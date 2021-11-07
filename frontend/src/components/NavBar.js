@@ -13,7 +13,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 export default function NavBar() {
   return (
     <>
-      <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg">
+      <Navbar bg="dark" variant="dark" collapseOnSelect expand="md">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Altitude Health</Navbar.Brand>
