@@ -37,10 +37,6 @@ def getProducts(request):
 # the product key that is entered on the string in urls.py
 @api_view(['GET'])
 def getProduct(request, pk):
-    product = None
-    for i in products:
-        if i['_id'] == pk:
-            product == i
-            break
-
-    return Response(products)
+    product = Product.objects.get(_id=pk)
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
