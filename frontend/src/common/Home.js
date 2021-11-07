@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Latest products</h1>
       {loading ? (
         <Loading />
       ) : error ? (
