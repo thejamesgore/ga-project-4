@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios.get(`${baseUrl}/products/`)
+      const { data } = await axios.get(`/api/products/`)
       setProducts(data)
     }
     getProducts()
