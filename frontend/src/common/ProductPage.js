@@ -7,7 +7,7 @@ import {
   ListGroup,
   Button,
   Card,
-  ListGroupItem,
+  // ListGroupItem,
 } from 'react-bootstrap'
 
 import Rating from '../components/Rating'
@@ -54,7 +54,7 @@ function ProductPage({ match }) {
     },
   ])
 
-  const product = products.find((p) => p._id == match.params.id)
+  const product = products.find((p) => p._id === match.params.id)
 
   return (
     <div>
@@ -106,7 +106,7 @@ function ProductPage({ match }) {
               <ListGroup.Item>
                 <Button
                   className="btn btn-block"
-                  disabled={product.countInStock == 0}
+                  disabled={product.countInStock === 0}
                   type="button"
                 >
                   Add To Cart

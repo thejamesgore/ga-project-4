@@ -16,6 +16,7 @@ def getRoutes(request):
         '/api/products/',
         '/api/products/create/',
         'api/products/upload/',
+        '/api/prodcts/<id>/',
         '/api/prodcts/<id>/reviews/',
         '/api/products/top/',
         'api/products/delete/<id>',
