@@ -1,5 +1,12 @@
 import React from 'react'
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import {
+  Container,
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 // import { Link } from 'react-router-dom'
 
@@ -13,6 +20,15 @@ export default function NavBar() {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Form className="d-flex">
+              <FormControl
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+              <Button variant="outline-success">Search</Button>
+            </Form>
             <Nav className="me-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>

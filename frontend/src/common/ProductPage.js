@@ -48,12 +48,8 @@ function ProductPage({ match }) {
                 />
               </ListGroup.Item>
 
-              <ListGroup.Item>
-                Descritption: {product.description}
-              </ListGroup.Item>
+              <ListGroup.Item>{product.description}</ListGroup.Item>
             </ListGroup>
-          </Col>
-          <Col md={2}>
             <Card>
               <ListGroup variant="flush">
                 <ListGroup.Item>
@@ -106,6 +102,7 @@ function ProductPage({ match }) {
               </ListGroup>
             </Card>
           </Col>
+          <Col md={2}></Col>
         </Row>
       )}
     </div>
