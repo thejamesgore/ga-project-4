@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Row,
@@ -9,52 +9,22 @@ import {
   Card,
   // ListGroupItem,
 } from 'react-bootstrap'
+import axios from 'axios'
 
 import Rating from '../components/Rating'
 
 function ProductPage({ match }) {
-  const [products, setProducts] = useState([
-    {
-      _id: '1',
-      name: 'Alpha Brain',
-      image: '/images/alpha_brain.png',
-      description: 'Nootropic for the mind, increased memory and focus',
-      brand: 'Onnit',
-      category: 'Mind & Body',
-      price: 39.99,
-      countInStock: 10,
-      rating: 4.5,
-      numReviews: 12,
-    },
-    {
-      _id: '2',
-      name: 'New Mood',
-      image: '/images/new_mood.png',
-      description:
-        'Nootropic for the mind, increases postive mood and calmness',
-      brand: 'Onnit',
-      category: 'Mind & Body',
-      price: 39.99,
-      countInStock: 4,
-      rating: 4,
-      numReviews: 8,
-    },
-    {
-      _id: '3',
-      name: 'New Mood',
-      image: '/images/vitamin_d.png',
-      description:
-        'Nootropic for the mind, increases postive mood and calmness',
-      brand: 'Onnit',
-      category: 'Mind & Body',
-      price: 39.99,
-      countInStock: 4,
-      rating: 4.5,
-      numReviews: 8,
-    },
-  ])
+  const [product, setProduct] = useState([])
 
-  const product = products.find((p) => p._id === match.params.id)
+  useEffect(() => {
+    const getProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`)
+      setProduct(data)
+    }
+    getProduct()
+  }, [])
+
+  // const product = products.find((p) => p._id === match.params.id)
 
   return (
     <div>
