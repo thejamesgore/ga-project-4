@@ -8,8 +8,8 @@ import Rating from '../components/Rating'
 import AlertMessage from '../components/AlertMessage'
 import Loading from '../components/Loading'
 
-function ProductPage({ match }) {
-  const [quantity, setQuantity] = useState(1)
+function ProductPage({ match, history }) {
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
@@ -17,6 +17,10 @@ function ProductPage({ match }) {
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])
+
+  const addToCart = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
 
   return (
     <div>
@@ -77,8 +81,8 @@ function ProductPage({ match }) {
                       <Col xs="auto" className="my-1">
                         <Form.Control
                           as="select"
-                          value={quantity}
-                          onChange={(e) => setQuantity(e.target.value)}
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
@@ -95,6 +99,7 @@ function ProductPage({ match }) {
                     className="btn btn-block"
                     disabled={product.countInStock === 0}
                     type="button"
+                    onClick={addToCart}
                   >
                     Add To Cart
                   </Button>
