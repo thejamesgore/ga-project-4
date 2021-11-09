@@ -18,11 +18,59 @@ export default function Cart({ match, location, history }) {
     }
   }, [dispatch, productId, qty])
 
+  const removeFromCart = (id) => {
+    console.log(id)
+  }
+
   return (
-    <>
-      <div>THIS IS THE CART PAGE</div>
-      <div>THIS IS THE CART PAGE</div>
-      <div>THIS IS THE CART PAGE</div>
-    </>
+    <Row>
+      <Col md={8}>
+        <h1>Shopping Cart</h1>
+        {cartItems.length === 0 ? (
+          <AlertMessage variant="info">
+            Your cart is empty <Link to="/">Go Back</Link>
+          </AlertMessage>
+        ) : (
+          <ListGroup variant="flush">
+            {cartItems.map((item) => (
+              <ListGroup.Item key={item.product}>
+                <Row>
+                  <Col md={2}>
+                    <Image src={item.image} alt={item.name} fluid rounded />
+                  </Col>
+                  <Col md={3}>
+                    <Link to={`/products/${item.product}`}>{item.name}</Link>
+                  </Col>
+                  <Col md={3}>
+                    <Form.Control
+                      as="select"
+                      value={item.qty}
+                      onChange={(e) =>
+                        dispatch(addToCart(item.product, e.target.value))
+                      }
+                    >
+                      {[...Array(item.countInStock).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Col>
+                  <Col md={1}>
+                    <Button
+                      type="button"
+                      variant="light"
+                      onClick={() => removeFromCart(item.product)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        )}
+      </Col>
+    </Row>
   )
 }
