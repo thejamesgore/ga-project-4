@@ -8,10 +8,9 @@ import { addToCart } from '../redux/actions/cartActions'
 export default function Cart({ match, location, history }) {
   const productId = match.params.id
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
-
-  console.log('QTY IS', qty)
-
   const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
 
   useEffect(() => {
     if (productId) {
