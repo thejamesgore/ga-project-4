@@ -90,10 +90,11 @@ export default function Cart({ match, location, history }) {
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
-              </h2>
+              <h2>Subtotal</h2>
+              <h3>
+                {' '}
+                {cartItems.reduce((acc, item) => acc + item.qty, 0)} items
+              </h3>
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
