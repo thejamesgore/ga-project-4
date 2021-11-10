@@ -1,7 +1,16 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Form,
+  Button,
+  Card,
+  ListGroupItem,
+} from 'react-bootstrap'
 import AlertMessage from '../components/AlertMessage'
 import { addToCart } from '../redux/actions/cartActions'
 
@@ -20,6 +29,10 @@ export default function Cart({ match, location, history }) {
 
   const removeFromCart = (id) => {
     console.log(id)
+  }
+
+  const handleCheckout = () => {
+    history.push('/login?redirect=shipping')
   }
 
   return (
@@ -46,7 +59,9 @@ export default function Cart({ match, location, history }) {
                       as="select"
                       value={item.qty}
                       onChange={(e) =>
-                        dispatch(addToCart(item.product, e.target.value))
+                        dispatch(
+                          addToCart(item.product, Number(e.target.value))
+                        )
                       }
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
@@ -70,6 +85,37 @@ export default function Cart({ match, location, history }) {
             ))}
           </ListGroup>
         )}
+      </Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <h2>
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
+              </h2>
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <div className="d-grid gap-2">
+                <Button
+                  type="button"
+                  className="btn-block"
+                  disabled={cartItems.length === 0}
+                  onClick={handleCheckout}
+                >
+                  {cartItems.length === 0 ? (
+                    <span>Cart is empty</span>
+                  ) : (
+                    <span>Checkout</span>
+                  )}
+                </Button>
+              </div>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
       </Col>
     </Row>
   )
