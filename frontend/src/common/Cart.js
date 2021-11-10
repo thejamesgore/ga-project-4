@@ -1,18 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  Button,
-  Card,
-  ListGroupItem,
-} from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import AlertMessage from '../components/AlertMessage'
-import { addToCart } from '../redux/actions/cartActions'
+import { addToCart, removeFromCart } from '../redux/actions/cartActions'
 
 export default function Cart({ match, location, history }) {
   const productId = match.params.id
@@ -27,8 +18,8 @@ export default function Cart({ match, location, history }) {
     }
   }, [dispatch, productId, qty])
 
-  const removeFromCart = (id) => {
-    console.log(id)
+  const removeItemFromCart = (id) => {
+    dispatch(removeFromCart(id))
   }
 
   const handleCheckout = () => {
@@ -75,7 +66,7 @@ export default function Cart({ match, location, history }) {
                     <Button
                       type="button"
                       variant="light"
-                      onClick={() => removeFromCart(item.product)}
+                      onClick={() => removeItemFromCart(item.product)}
                     >
                       <i className="fas fa-trash"></i>
                     </Button>
