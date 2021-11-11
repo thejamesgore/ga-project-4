@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User, update_last_login
+from django.contrib.auth.hashers import make_password
+
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -61,6 +63,20 @@ def getProducts(request):
 def getProduct(request, pk):
     product = Product.objects.get(_id=pk)
     serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def registerUser(request):
+    data = request.data
+    user = User.objects.create(
+        first_name=data['name'],
+        username=data['email'],
+        email=data['email'],
+        password=make_password(data['password'])
+    )
+
+    serializer = UserSerializerWithToken(user, many=False)
     return Response(serializer.data)
 
 
