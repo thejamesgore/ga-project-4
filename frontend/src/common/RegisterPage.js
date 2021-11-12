@@ -36,7 +36,7 @@ export default function RegisterPage({ location, history }) {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1>Register</h1>
       {message && <AlertMessage variant="danger">{message}</AlertMessage>}
       {error && <AlertMessage variant="danger">{error}</AlertMessage>}
       {loading && <Loading />}

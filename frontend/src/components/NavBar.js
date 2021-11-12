@@ -67,9 +67,7 @@ export default function NavBar() {
                 <span></span>
               ) : (
                 <LinkContainer to="/register">
-                  <Nav.Link>
-                    <i className="fas fa-shopping-cart" /> Register
-                  </Nav.Link>
+                  <Nav.Link>Register</Nav.Link>
                 </LinkContainer>
               )}
             </Nav>
