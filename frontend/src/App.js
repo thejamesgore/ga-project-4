@@ -5,6 +5,7 @@ import Home from './common/Home'
 import NavBar from './components/NavBar'
 import ProductPage from './common/ProductPage'
 import Cart from './common/Cart'
+import LoginPage from './common/LoginPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/login/" component={LoginPage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
       </Switch>
