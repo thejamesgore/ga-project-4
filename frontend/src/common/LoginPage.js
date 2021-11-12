@@ -29,6 +29,8 @@ export default function LoginPage({ location, history }) {
   return (
     <FormContainer>
       <h1>Sign In</h1>
+      {error && <AlertMessage variant="danger">{error}</AlertMessage>}
+      {loading && <Loading />}
       <Form onSubmit={submitForm}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
