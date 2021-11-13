@@ -7,6 +7,7 @@ import ProductPage from './common/ProductPage'
 import Cart from './common/Cart'
 import LoginPage from './common/LoginPage'
 import RegisterPage from './common/RegisterPage'
+import ProfilePage from './common/ProfilePage'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/login/" component={LoginPage} />
         <Route path="/register/" component={RegisterPage} />
+        <Route path="/profile/" component={ProfilePage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
       </Switch>
