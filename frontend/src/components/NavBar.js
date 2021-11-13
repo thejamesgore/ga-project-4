@@ -27,10 +27,46 @@ export default function NavBar() {
       <Navbar bg="dark" variant="dark" collapseOnSelect expand="md">
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Altitude Health</Navbar.Brand>
+            <Navbar.Brand>Supps & Stuff </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i className="fas fa-shopping-cart" /> Cart
+                </Nav.Link>
+              </LinkContainer>
+
+              {userInfo ? (
+                <Nav title={userInfo.name} id="username">
+                  <LinkContainer to="/profile">
+                    <Nav.Link>
+                      <i className="fas fa-user" /> Profile
+                    </Nav.Link>
+                  </LinkContainer>
+                  <Nav.Link onClick={logoutUser}>
+                    <i className="fas fa-sign-out-alt" /> Logout
+                  </Nav.Link>
+                </Nav>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                    <i className="fas fa-sign-in-alt" /> Login
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+              {userInfo ? (
+                <span></span>
+              ) : (
+                <LinkContainer to="/register">
+                  <Nav.Link>
+                    {' '}
+                    <i className="fas fa-user-plus" /> Register
+                  </Nav.Link>
+                </LinkContainer>
+              )}
+            </Nav>
             <Form className="d-flex">
               <FormControl
                 type="search"
@@ -40,37 +76,6 @@ export default function NavBar() {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
-            <Nav className="me-auto">
-              <LinkContainer to="/cart">
-                <Nav.Link>
-                  <i className="fas fa-shopping-cart" /> Cart
-                </Nav.Link>
-              </LinkContainer>
-
-              {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username">
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutUser}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
-              ) : (
-                <LinkContainer to="/login">
-                  <Nav.Link>
-                    <i className="fas fa-user" /> Login
-                  </Nav.Link>
-                </LinkContainer>
-              )}
-              {userInfo ? (
-                <span></span>
-              ) : (
-                <LinkContainer to="/register">
-                  <Nav.Link>Register</Nav.Link>
-                </LinkContainer>
-              )}
-            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
