@@ -8,6 +8,7 @@ import Cart from './common/Cart'
 import LoginPage from './common/LoginPage'
 import RegisterPage from './common/RegisterPage'
 import ProfilePage from './common/ProfilePage'
+import ShippingPage from './common/ShippingPage'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login/" component={LoginPage} />
         <Route path="/register/" component={RegisterPage} />
         <Route path="/profile/" component={ProfilePage} />
+        <Route path="/shipping/" component={ShippingPage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
       </Switch>
