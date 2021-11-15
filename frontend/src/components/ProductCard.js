@@ -17,6 +17,12 @@ export default function Product({ product }) {
           </Card.Title>
         </Link>
 
+        <Link to={`/product/${product.brand}`}>
+          <Card.Title as="div">
+            <strong>{product.brand}</strong>
+          </Card.Title>
+        </Link>
+
         <Card.Text as="div">
           <div classNAme="my-3">
             <Rating
@@ -27,7 +33,7 @@ export default function Product({ product }) {
           </div>
         </Card.Text>
 
-        <Card.Text as="h3">${product.price}</Card.Text>
+        <Card.Text as="h3">£{product.price}</Card.Text>
       </Card.Body>
     </Card>
   )

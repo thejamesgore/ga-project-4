@@ -29,7 +29,6 @@ export default function Cart({ match, location, history }) {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <AlertMessage variant="info">
             Your cart is empty <Link to="/">Go Back</Link>
@@ -81,15 +80,15 @@ export default function Cart({ match, location, history }) {
         <Card>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Subtotal</h2>
               <h3>
                 {' '}
                 {cartItems.reduce((acc, item) => acc + item.qty, 0)} items
               </h3>
-              $
+              £
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(2)}
+                .toFixed(2)}{' '}
+              Total
             </ListGroup.Item>
             <ListGroup.Item>
               <div className="d-grid gap-2">
