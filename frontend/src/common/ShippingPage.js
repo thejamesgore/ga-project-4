@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 
 export default function ShippingPage({ history }) {
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [postCode, setPostCode] = useState('')
-  const [country, setCountry] = useState('')
+  const cart = useSelector((state) => state.cart)
+  const { shippingAddress } = cart
+  const [address, setAddress] = useState(shippingAddress.address)
+  const [city, setCity] = useState(shippingAddress.city)
+  const [postCode, setPostCode] = useState(shippingAddress.postCode)
+  const [country, setCountry] = useState(shippingAddress.country)
 
   const submitForm = (e) => {
     e.preventDefault()
