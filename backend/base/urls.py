@@ -20,5 +20,5 @@ urlpatterns = [
     path('products/<str:pk>/', views.getProduct, name="product"),
 
     # order views
-    path('orders/add', views.addOrderItems, name="orders-add")
+    path('orders/add/', views.addOrderItems, name="add-orders")
 ]
