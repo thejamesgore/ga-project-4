@@ -6,7 +6,6 @@ import CheckoutProgress from '../components/CheckoutProgress'
 import { savePaymentDetails } from '../redux/actions/cartActions'
 
 function PaymentPage({ history }) {
-  const [paymentMethod, setPaymentMethod] = useState('')
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
   const dispatch = useDispatch()
@@ -23,7 +22,7 @@ function PaymentPage({ history }) {
     e.preventDefault()
     dispatch(savePaymentDetails({ name, cardNumber, expiryDate, cvv }))
     console.log('submit payment')
-    // history.push('/confirmation')
+    history.push('/confirmation')
   }
 
   return (
@@ -31,7 +30,7 @@ function PaymentPage({ history }) {
       <CheckoutProgress step1 step2 step3 />
       <Form onSubmit={submitForm}>
         <Form.Group controlId="name">
-          <Form.Label>Name on Card</Form.Label>
+          <Form.Label>Card Name</Form.Label>
           <Form.Control
             required
             type="text"
