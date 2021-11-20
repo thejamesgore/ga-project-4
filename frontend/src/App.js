@@ -10,6 +10,7 @@ import RegisterPage from './common/RegisterPage'
 import ProfilePage from './common/ProfilePage'
 import ShippingPage from './common/ShippingPage'
 import PaymentPage from './common/PaymentPage'
+import ConfirmationPage from './common/ConfirmationPage'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile/" component={ProfilePage} />
         <Route path="/shipping/" component={ShippingPage} />
         <Route path="/payment/" component={PaymentPage} />
+        <Route path="/confirmation/" component={ConfirmationPage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
       </Switch>
