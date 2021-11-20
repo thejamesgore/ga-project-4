@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import {
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Card,
-  ListGroupItem,
-} from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { createOrder } from '../redux/actions/orderActions'
 import AlertMessage from '../components/AlertMessage'
 import CheckoutProgress from '../components/CheckoutProgress'
 
-function ConfirmationPage() {
+function ConfirmationPage({ history }) {
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, error, success } = orderCreate
   const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
 
   cart.itemsPrice = cart.cartItems
     .reduce((acc, item) => acc + item.price * item.qty, 0)
@@ -24,8 +20,24 @@ function ConfirmationPage() {
     Number(cart.itemsPrice) + Number(cart.shippingPrice)
   ).toFixed(2)
 
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/`)
+    }
+  })
+
   const submitForm = (e) => {
     e.preventDefault()
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentDetails: cart.paymentDetails,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
     console.log('submit order')
   }
 

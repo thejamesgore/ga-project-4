@@ -57,6 +57,13 @@ def getProducts(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def getTopProducts(request):
+    products = Product.objects.filter(rating__gte=4.5).order_by('-rating')[0:5]
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
 # To get a single product by id for loop will go through list of products and match the _id to
 # the product key that is entered on the string in urls.py
 @api_view(['GET'])
@@ -117,36 +124,43 @@ def getUsers(request):
 def addOrderItems(request):
     user = request.user
     data = request.data
+
     orderItems = data['orderItems']
+
     if orderItems and len(orderItems) == 0:
-        return Response({'message': 'No order items'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'detail': 'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
     else:
+
         order = Order.objects.create(
             user=user,
-            payment_method=data['payment_method'],
+            paymentMethod=data['paymentMethod'],
+            taxPrice=data['taxPrice'],
             shippingPrice=data['shippingPrice'],
-            totalPrice=data['totalPrice'],
+            totalPrice=data['totalPrice']
         )
+
         shipping = ShippingAddress.objects.create(
             order=order,
             address=data['shippingAddress']['address'],
             city=data['shippingAddress']['city'],
-            postCode=data['shippingAddress']['postcode'],
+            postalCode=data['shippingAddress']['postalCode'],
             country=data['shippingAddress']['country'],
         )
-        for item in orderItems:
-            product = Product.objects.get(_id=item['product'])
+
+        for i in orderItems:
+            product = Product.objects.get(_id=i['product'])
+
             item = OrderItem.objects.create(
                 product=product,
                 order=order,
                 name=product.name,
-                qty=item['qty'],
-                price=item['price'],
+                qty=i['qty'],
+                price=i['price'],
                 image=product.image.url,
             )
 
-        product.countInStock -= item.qty
-        product.save()
+            product.countInStock -= item.qty
+            product.save()
 
-    serializer = OrderSerializer(order, many=True)
-    return Response(serializer.data)
+        serializer = OrderSerializer(order, many=False)
+        return Response(serializer.data)
