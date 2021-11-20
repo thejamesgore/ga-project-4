@@ -17,7 +17,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
@@ -28,6 +28,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
       type: ORDER_CREATE_SUCCESS,
       payload: data,
     })
+
+    localStorage.removeItem('cartItems')
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAILURE,

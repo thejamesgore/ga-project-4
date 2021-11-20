@@ -17,8 +17,10 @@ urlpatterns = [
 
     # product views
     path('products/', views.getProducts, name="products"),
+    path('products/top/', views.getTopProducts, name="top-products"),
     path('products/<str:pk>/', views.getProduct, name="product"),
 
     # order views
     path('orders/add/', views.addOrderItems, name="add-orders")
+
 ]
