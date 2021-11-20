@@ -9,6 +9,7 @@ import LoginPage from './common/LoginPage'
 import RegisterPage from './common/RegisterPage'
 import ProfilePage from './common/ProfilePage'
 import ShippingPage from './common/ShippingPage'
+import PaymentPage from './common/PaymentPage'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register/" component={RegisterPage} />
         <Route path="/profile/" component={ProfilePage} />
         <Route path="/shipping/" component={ShippingPage} />
+        <Route path="/payment/" component={PaymentPage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
       </Switch>
