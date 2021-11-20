@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
+import CheckoutProgress from '../components/CheckoutProgress'
+import { saveShippingAddress } from '../redux/actions/cartActions'
 
 export default function ShippingPage({ history }) {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
+  const dispatch = useDispatch()
   const [address, setAddress] = useState(shippingAddress.address)
   const [city, setCity] = useState(shippingAddress.city)
   const [postCode, setPostCode] = useState(shippingAddress.postCode)
@@ -13,11 +16,13 @@ export default function ShippingPage({ history }) {
 
   const submitForm = (e) => {
     e.preventDefault()
-    console.log('submitform')
+    dispatch(saveShippingAddress({ address, city, postCode, country }))
+    history.push('/payment')
   }
 
   return (
     <FormContainer>
+      <CheckoutProgress step1 step2 step3 step4 />
       <Form onSubmit={submitForm}>
         <Form.Group controlId="address">
           <Form.Label>Address</Form.Label>
