@@ -122,8 +122,8 @@ def getUsers(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addOrderItems(request):
-    user = request.user
     data = request.data
+    user = request.user
 
     orderItems = data['orderItems']
 
@@ -133,8 +133,7 @@ def addOrderItems(request):
 
         order = Order.objects.create(
             user=user,
-            paymentMethod=data['paymentMethod'],
-            taxPrice=data['taxPrice'],
+            paymentMethod=data['paymentDetails'],
             shippingPrice=data['shippingPrice'],
             totalPrice=data['totalPrice']
         )
@@ -143,7 +142,7 @@ def addOrderItems(request):
             order=order,
             address=data['shippingAddress']['address'],
             city=data['shippingAddress']['city'],
-            postalCode=data['shippingAddress']['postalCode'],
+            postCode=data['shippingAddress']['postCode'],
             country=data['shippingAddress']['country'],
         )
 
