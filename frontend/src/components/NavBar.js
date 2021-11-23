@@ -67,7 +67,7 @@ export default function NavBar() {
                 </LinkContainer>
               )}
             </Nav>
-            <Form className="d-flex">
+            {/* <Form className="d-flex">
               <FormControl
                 type="search"
                 placeholder="Search"
@@ -75,7 +75,7 @@ export default function NavBar() {
                 aria-label="Search"
               />
               <Button variant="outline-success">Search</Button>
-            </Form>
+            </Form> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

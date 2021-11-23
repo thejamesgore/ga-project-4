@@ -30,10 +30,11 @@ function ProductPage({ match, history }) {
         <AlertMessage variant="danger">{error}</AlertMessage>
       ) : (
         <Row>
-          <Col md={6}>
+          <Col md={2}></Col>
+          <Col md={3}>
             <Image src={product.image} alt={product.name} height="500" />
           </Col>
-          <Col md={3}>
+          <Col md={4}>
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h3>{product.name}</h3>
