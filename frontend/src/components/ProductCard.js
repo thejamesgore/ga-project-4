@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 export default function Product({ product }) {
   return (
-    <Card border="light" className="my-3 p-3 rounded">
+    <Card border="dark" className="my-3 p-3 rounded">
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} />
+        <Card.Img src={product.image} height="500" />
       </Link>
 
       <Card.Body>

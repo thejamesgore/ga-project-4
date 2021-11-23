@@ -57,7 +57,7 @@ function ConfirmationPage({ history }) {
         <Col md={8}>
           <ListGroup variant="flush">
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>Shipping Details</h2>
               <p>Street: {cart.shippingAddress.address}</p>
               <p> City: {cart.shippingAddress.city}</p>
               <p>Post Code: {cart.shippingAddress.postCode}</p>
