@@ -20,7 +20,7 @@ function HomeCarousel() {
   ) : error ? (
     <AlertMessage variant="danger">{error}</AlertMessage>
   ) : (
-    <Carousel pause="hover" className="bg-dark">
+    <Carousel pause="hover" className="carousel">
       {products.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/product/${product._id}`}>

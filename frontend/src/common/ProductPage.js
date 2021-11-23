@@ -24,11 +24,6 @@ function ProductPage({ match, history }) {
 
   return (
     <div>
-      <Link to="/" className="btn btn-light my-3">
-        {' '}
-        Go Back
-      </Link>
-
       {loading ? (
         <Loading />
       ) : error ? (
@@ -36,7 +31,7 @@ function ProductPage({ match, history }) {
       ) : (
         <Row>
           <Col md={6}>
-            <Image src={product.image} alt={product.name} fluid />
+            <Image src={product.image} alt={product.name} height="500" />
           </Col>
           <Col md={3}>
             <ListGroup variant="flush">
