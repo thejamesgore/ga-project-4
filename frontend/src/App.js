@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import Home from './common/Home'
 import NavBar from './components/NavBar'
@@ -14,7 +14,7 @@ import ConfirmationPage from './common/ConfirmationPage'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -27,7 +27,7 @@ function App() {
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
