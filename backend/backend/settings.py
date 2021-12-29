@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     'base.apps.BaseConfig',
 
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -175,3 +177,11 @@ MEDIA_ROOT = 'backend/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dzgirgprf',
+    'API_KEY': '877115611551999',
+    'API_SECRET': 'A0lvKn9QDxE2P5UXPwfc232XiJw',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -33,7 +33,6 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-# api_view handy as will return all routes via browser also and provides other options
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
